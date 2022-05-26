@@ -1,26 +1,22 @@
 import { useQuery } from "react-query";
-import { ICharacter } from "../interfaces/ICharacter";
 import Character from "./Character";
-import "../css/Characters.css";
+import '../../css/RickyAndMorty/Characters.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import { fetchCharactersN } from "../../helpers/fetchs";
+import { ICharacterN } from "../../interfaces/ICharacterN";
 
-function Characters() {
-  const [page, setPage] = useState(42);
 
-  const fetchCharacters = async ({ queryKey }: any) => {
-    const response = await fetch(
-      `https://rickandmortyapi.com/api/character?page=${queryKey[1]}`
-    );
-    return response.json();
-  };
+function CharactersN() {
+  const [page, setPage] = useState(1);
 
   const { data, error, isLoading, isPreviousData } = useQuery(
     ["characters", page],
-    fetchCharacters, {keepPreviousData: true}
+    fetchCharactersN, {keepPreviousData: true}
   );
 
   console.log(data);
+  
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -29,7 +25,7 @@ function Characters() {
   return (
     <div className="row justify-content-center w-100">
       <h1>Ricky And Morty</h1>
-      {data.results.map((e: ICharacter) => (
+      {data.map((e: ICharacterN) => (
         <Character character={e} />
       ))}
       <div className="buttons">
@@ -42,7 +38,7 @@ function Characters() {
           Previous
         </button>
         <button
-          disabled={!data.info.next || isPreviousData}
+          disabled={!data || isPreviousData}
           className="btn btn-outline-success"
           type="button"
           onClick={() => setPage(page + 1)}
@@ -54,4 +50,4 @@ function Characters() {
   );
 }
 
-export default Characters;
+export default CharactersN;

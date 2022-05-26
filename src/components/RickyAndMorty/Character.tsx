@@ -1,10 +1,10 @@
-import { ICharacter } from "../interfaces/ICharacter";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
-import '../css/Character.css'
+import { ICharacterRM } from '../../interfaces/ICharacterRM';
+import '../../css/RickyAndMorty/Character.css'
 
 type PrivateProps = {
-  character: ICharacter;
+  character: ICharacterRM;
 };
 
 function Character({ character }: PrivateProps) {
