@@ -1,0 +1,24 @@
+
+body {
+    background-color:#24325FFF;
+}
+
+h1 {
+    color: #A6EEE6FF;
+    text-align: center;
+}
+
+.container {
+    max-width: 80rem;
+}
+
+button {
+    margin: 10px;
+    padding: 5xp;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
